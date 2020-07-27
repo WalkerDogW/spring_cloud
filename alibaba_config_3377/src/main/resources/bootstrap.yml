@@ -1,0 +1,53 @@
+server:
+  port: 3377
+
+spring:
+  application:
+    name: nacos-config
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
+    url: jdbc:mysql://47.100.136.208:3306/cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: cloud
+    password: cloud
+
+    druid:
+      test-while-idle: true
+      validation-query: select 1
+
+    #nacos
+    platform: mysql
+
+  cloud:
+    #nacos
+    nacos:
+      discovery:
+        server-addr: 192.168.209.129:8848
+      config:
+        server-addr: 192.168.209.129:8848
+        file-extension: yml
+        namespace: 179f1dc0-b997-430f-8e95-08a96d178c4e #dev
+        group: DEV_GROUP
+
+
+#nacos
+db:
+  num: 1
+  url0:
+    jdbc: mysql://47.100.136.208:3306/nacos?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+  user: nacos
+  password: nacos
+
+
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
